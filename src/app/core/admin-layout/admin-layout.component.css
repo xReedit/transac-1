@@ -1,0 +1,48 @@
+
+.mat-drawer-content {
+  overflow: hidden !important; 
+}
+
+.example-container {    
+  width: 100%;
+  z-index: 1;
+  overflow: hidden;
+  /* width: 100%; */
+    height: 100vh;    
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    background-color: rgb(245, 245, 245);
+     /* margin-top: 64px; */
+    position: relative;
+    padding: 0px;
+    transition: all 0.2s ease-in-out 0s;     
+    overflow: hidden;
+  }
+
+  
+  .example-sidenav {
+    width: 260px;
+    box-shadow: none;
+    border-right: 0px;
+    background: rgb(43, 43, 43); 
+    overflow: hidden;   
+  }
+  .cabecera-inner {
+    background: rgb(43, 43, 43);
+  }
+
+  .contenedor-principal {        
+    /* display: flex; */
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 30px;        
+    /* flex-flow: row wrap;    */
+    /* overflow: auto;     */
+    height: calc(100vh - 58px)
+  }
+
+  .contenedor-master {
+    margin-top: 58px;    
+    /* height: calc(100vh - 58px); */
+    overflow: auto;    
+  }

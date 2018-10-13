@@ -1,0 +1,31 @@
+
+.contenedor-inner {   
+    padding: 15px;
+    background: #303f9f;
+    min-height: 100vh;
+    display: flex;    
+}
+
+.seccion-login {    
+    border-radius: 4px;
+    /* margin: 15px; */
+    margin: 0 auto;
+    width: 100%;  
+    min-height: calc(100vh - 30px);  
+    /* background: #f3fcff; */
+    background: rgb(248,250,251);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 2px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.004);     
+}
+
+.img_ini {
+    width: 100%;
+    height: auto;
+}
+
+
+.row-m0 {        
+    margin-right: 0px !important;
+    margin-left: 0px !important; 
+}
+

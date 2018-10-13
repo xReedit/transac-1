@@ -1,0 +1,38 @@
+<div class="contenedor-inner">   
+  <div class="seccion-login">
+
+    <div class="row row-m0 h-100 justify-content-center align-items-center">
+      <div class="col-md-6 text-center">
+          <img src="../../../assets/images/login.PNG" alt="a" class="img_ini">
+      </div>
+      <div class="col-md-6">
+        <div class="text-center m-5">
+          <img src="../assets/images/papaya_text.png" width="200px">
+          <h3>Transactor</h3>
+          <p>Hola, bienvenido(a), ingrese sus credenciales:</p>
+          <hr>
+
+          <form action="">
+            <div class="row ">
+              <div class="col-sm-6">
+                  <mat-form-field class="w-100">
+                    <input matInput placeholder="Usuario">
+                  </mat-form-field>
+              </div>
+              <div class="col-sm-6">
+                  <mat-form-field class="w-100">
+                    <input matInput type="password" placeholder="Clave" (keyup.enter)="logear()">
+                  </mat-form-field>
+              </div>
+            </div>
+            <hr>
+            <div class="text-center">
+              <button mat-flat-button (click)="logear()">Listo, Ingresar</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<mat-toolbar-row class="cabecera-sidenav">                
+    <img src="../assets/images/papaya_text.png" width="120px">      
+    <!-- <span>PAPAYA TRANSACTOR 1.0</span>   -->
+</mat-toolbar-row>        
+<div class="wrapper">
+    <nav id="sidebar">
+        <div class="sidebar-header text-center">
+            <h3>Zara</h3>
+            <span>moyobamba</span>
+        </div>
+        <hr>
+        <mat-nav-list class="list-unstyled components">
+            <div class="item">
+                <mat-list-item>
+                    <a href="#">
+                        <i class="fas fa-home"></i>
+                        Incio
+                    </a>                        
+                </mat-list-item>
+            </div>
+            <div class="item">
+                <mat-list-item href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <a  href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <i class="fas fa-copy"></i>
+                            Almacen
+                        </a>                                    
+                </mat-list-item>
+                <mat-list class="collapse list-unstyled" id="pageSubmenu">
+                        <mat-list-item>
+                            <a href="#">Registrar de productos</a>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <a href="#">Transferencias de mercaderia</a>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <a href="#">Almacenes</a>
+                        </mat-list-item>
+                </mat-list>      
+            </div>        
+            <div class="item">
+                <mat-list-item>
+                    <a href="#">
+                        <i class="fas fa-image"></i>
+                        Venta
+                    </a>
+                </mat-list-item>
+            </div>
+            <div class="item">
+                <mat-list-item>
+                    <a href="#">
+                        <i class="fas fa-question"></i>
+                        Clientes
+                    </a>
+                </mat-list-item>
+            </div>            
+        </mat-nav-list>
+    </nav>
+</div>
