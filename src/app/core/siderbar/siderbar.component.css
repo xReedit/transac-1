@@ -1,4 +1,4 @@
-.cabecera-sidenav {
+.cabecera-sidenav {    
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;
@@ -10,7 +10,7 @@
     overflow: hidden;
   }
 
-  .cabecera-sidenav span{
+  .cabecera-sidenav span{    
     display: inline;
     box-sizing: border-box;
     font-size: 15px;
@@ -22,7 +22,6 @@
     text-decoration: none;
     overflow: hidden;
   }
-
 
   
   a,
@@ -95,8 +94,8 @@
   }
 
   #sidebar .mat-nav-list .item .mat-list-item a i {
-      text-align: left;
-      width: 35px;
+      text-align: right;
+      /* width: 45px; */
       padding-right: 15px;
   }
   
@@ -119,7 +118,7 @@
       display: block;
       position: absolute;
       top: 50%;
-      right: -90px;
+      right: -130px;
       transform: translateY(-50%);
   }
   
