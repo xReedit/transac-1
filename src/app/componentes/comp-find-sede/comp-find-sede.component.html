@@ -1,0 +1,8 @@
+<mat-form-field class="w-100">
+    <mat-select appNextfocus placeholder="Sede" [formControl]="_formControlName" [compareWith]="compareSede" (selectionChange)="_onSelectionChange($event)">
+      <mat-option *ngFor="let item of List" [value]="item">
+        {{item.descripcion}}
+      </mat-option>
+    </mat-select>
+</mat-form-field>
+  
