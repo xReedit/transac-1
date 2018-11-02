@@ -1,0 +1,130 @@
+<div class="animated fadeIn m-contenedor">
+    <mat-card>
+        <div class="float-right">
+            <!-- <button class="btn btn-success btn-sm"> [F10] Guardar </button> -->
+        </div>
+        <h5>Datos del producto</h5>
+        <hr>
+        <!-- <mat-card-header>            
+            <mat-card-subtitle>Datos del producto</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="m-contenedor"> -->
+        <div>
+          <form [formGroup]="form">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Descripcion" formControlName="descripcion">
+                    </mat-form-field>
+
+                    <app-comp-find-categoria [_formControlName]="this.form.controls['idcategoria']"></app-comp-find-categoria>
+
+                    <app-comp-find-marca [_formControlName]="this.form.controls['idmarca']"></app-comp-find-marca>
+                    
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="w-50">
+                        <input matInput type="number" placeholder="Precio 1" formControlName="precio1">
+                    </mat-form-field>
+                    <mat-form-field class="w-50">
+                        <input matInput type="number" placeholder="Precio 2" formControlName="precio2">
+                    </mat-form-field>                                
+
+                    <mat-form-field class="w-100">
+                        <textarea matInput type="number" placeholder="Especificaciones" rows="4" spellcheck="false"  formControlName="glosa"></textarea>
+                    </mat-form-field>  
+                </div>
+            </div>
+          </form>
+                    
+          <br>
+          <h6>Detalles del producto</h6>
+          <div class="bg-detalles w-100">                                
+                <div style="margin-top: -30px;">
+                    <button (click)="getOpenDialogDetalle()" title="Agregar" mat-fab class="xbtn float-right mr-2" style="margin-bottom: -15px;">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                <br>
+                <div>
+                    <table mat-table [dataSource]="dataProductoDetalles" class="mat-elevation-z8 w-100">
+                        <ng-container matColumnDef="#">
+                            <th mat-header-cell *matHeaderCellDef class="m-0 bg-dark  text-white" style="width: 10%;"> # </th>
+                            <td mat-cell *matCellDef="let element; let i=index"> {{i+1}} </td>
+                            <td mat-footer-cell *matFooterCellDef class="font-weight-bold"> Total </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Cod barra">
+                            <th mat-header-cell *matHeaderCellDef class="m-0 bg-dark  text-white"> Cod barra </th>
+                            <td mat-cell *matCellDef="let element"> {{element.codigobarra}} </td>
+                            <td mat-footer-cell *matFooterCellDef></td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Color">
+                            <th mat-header-cell *matHeaderCellDef class="m-0 bg-dark  text-white"> Color </th>
+                            <td mat-cell *matCellDef="let element"> {{element.color | uppercase}} </td>
+                            <td mat-footer-cell *matFooterCellDef></td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Talla">
+                            <th mat-header-cell *matHeaderCellDef class="m-0 bg-dark  text-white"> Talla </th>
+                            <td mat-cell *matCellDef="let element"> {{element.talla.descripcion}} </td>
+                            <td mat-footer-cell *matFooterCellDef></td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Stock">
+                            <th mat-header-cell *matHeaderCellDef class="m-0 bg-dark  text-white"> Stock </th>
+                            <td mat-cell *matCellDef="let element"> {{element.stock}} </td>
+                            <td mat-footer-cell *matFooterCellDef class="font-weight-bold">{{getTotalStock()}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="-">
+                            <th mat-header-cell *matHeaderCellDef class="m-0 bg-dark text-white" style="width: 65px;"> - </th>
+                            <td mat-cell *matCellDef="let element; let i=index" class="w-10 position-relative">
+                                <div>
+                                    <!-- <i class="fa fa-pencil cursor pr-1" (click)="_getObJectProductoListIngresar(element)" aria-hidden="true"></i> -->                                    
+                                    <i class="far fa-trash-alt cursor" aria-hidden="true" (click)="rowIndexCondirmDelete = i"></i>
+                                </div>
+
+                                <!-- mesaje de confirmacion para borrar -->
+                                <div class="rowConfirmDelete" [ngClass]="{'visible selected': rowIndexCondirmDelete === i}">
+                                    <div>                                    
+                                        <button mat-button color="accent" class="xbtn" (click)="deleteRowLocalStorage(i)" >Borrar</button>
+                                        <button mat-button (click)="rowIndexCondirmDelete = null">Cancelar</button>
+                                    </div>
+                                </div>
+                                <!-- mesaje de confirmacion para borrar-->
+
+                            </td>
+                            <td mat-footer-cell *matFooterCellDef></td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+                    </table>
+                </div>
+          </div>          
+          <hr>                 
+        
+          <!-- <app-comp-btn-success class="mr-2" [disabled]="dataProductoDetalles.length === 0 || !form.valid" [_procesando]="false" (click)="GuardarProducto()"></app-comp-btn-success> -->          
+          <!-- <button mat-button class="xbtn btn-success mr-2">Guardar</button> -->
+
+          <button appKeyClick="F10" mat-raised-button class="xbtn btn-success mr-2" [disabled]="dataProductoDetalles.length === 0 || _procesando" (click)="GuardarProducto()">
+                <ng-container *ngIf="_procesando; else elseTemplate" class="animated fastIn">
+                    <i class="fas fa-sync fa-spin"></i>    
+                    <span class="pl-2"> Procesando... </span>
+                </ng-container>
+                <ng-template #elseTemplate class="animated fastIn">
+                    <i class="fas fa-check"></i>  
+                    <span class="pl-2"> <span class="subtitleBtn">F10 </span>| Guardar</span>
+                </ng-template>  
+            </button>
+
+          <button mat-button class="bg-detalles">Regresar</button>
+            
+        </div>
+        <!-- </mat-card-content> -->
+    </mat-card>
+    <br><br>
+</div>

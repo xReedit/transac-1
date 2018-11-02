@@ -10,10 +10,15 @@ export const AppRoutes: Routes = [
       component: AdminLayoutComponent,
       children: [
         {
-        path: '',
-        loadChildren: './dashboard/dashboard.module#DashboardModule',
-        canActivate: [AuthGuard],
-        data : {'tituloModulo':'Inicio'}
+          path: '',
+          loadChildren: './dashboard/dashboard.module#DashboardModule',
+          // canActivate: [AuthGuard],
+          data : {'tituloModulo': 'Inicio'}
+        },
+        {
+          path: 'almacen/producto',
+          // path: '',
+          loadChildren: './modulo-almacen/producto/producto.module#ProductoModule'
         }
       ]
     },

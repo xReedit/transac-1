@@ -12,4 +12,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
+  aaa() {
+    console.log("btn click");
+  }
 }

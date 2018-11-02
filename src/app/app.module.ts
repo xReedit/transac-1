@@ -28,7 +28,7 @@ import { CrudHttpService } from './shared/crud-http.service';
     AdminLayoutComponent,
     AuthLayoutComponent,
     HeaderTollbarComponent,
-    SiderbarComponent,    
+    SiderbarComponent,
   ],
   imports: [
     BrowserModule,

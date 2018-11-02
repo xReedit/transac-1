@@ -19,7 +19,7 @@ import { LoginComponent } from './login/login.component';
     MatGridListModule,
     FormsModule,
     ReactiveFormsModule
-    
+
   ],
   declarations: [
     LoginComponent

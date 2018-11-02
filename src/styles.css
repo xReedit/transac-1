@@ -17,11 +17,47 @@
   font-size: 14px;
 }
 
+
+.mat-card hr{
+    margin-left: -25px;
+    margin-right: -25px;
+}
+
+.xbtn:focus {
+  outline: none;
+}
+
+.subtitleBtn {    
+    font-weight: 500;
+    color: #e0e0e0;
+}
+
+@media only screen and (max-width: 600px) {
+    .mat-card hr{
+        margin-left: -16px;
+        margin-right: -16px;
+    }
+}
+
+/* personalizacion del card */
+/* .mat-card { padding: 0px !important;}
+.mat-card-header {
+    border-bottom: 1px solid #e0e0e0;    
+    padding: 25px 15px 0px 15px;    
+} 
+.mat-card-content {
+    padding: 25px;
+} */
+/* personalizacion del card */
+
+.bg-detalles {
+    padding: 20px;    
+    background-color: rgb(236, 236, 236)
+}
+
 .animated {
     -webkit-animation-duration: 0.8s;
     animation-duration: 0.8s;
-    /* -webkit-animation-fill-mode: both;
-    animation-fill-mode: both; */
 }
 
 .fast {
@@ -43,4 +79,5 @@
 .fadeIn {
     animation-name: fadeIn;
 }
+
 

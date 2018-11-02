@@ -15,17 +15,17 @@ export class CompFindTipoPagoComponent implements OnInit {
 
   @Input()
   _formControlName: FormControl;
-  
+
   @Output()
-  getObject: EventEmitter<any> = new EventEmitter();  
+  getObject: EventEmitter<any> = new EventEmitter();
 
   public List: TipoPagoModel[] = [];
-  
-  constructor(private crudService: CrudHttpService) { 
-    if (this._formControlName == undefined) {
+
+  constructor(private crudService: CrudHttpService) {
+    if (this._formControlName === undefined) {
       this._formControlName = this.myControl;
     }
-    
+
     this.loadMaestro();
   }
 
@@ -33,23 +33,21 @@ export class CompFindTipoPagoComponent implements OnInit {
   }
 
   private loadMaestro() {
-    this.crudService.getAll('api/tipopago','getall', false, false).subscribe(
+    this.crudService.getAll('api/tipopago', 'getall', false, false).subscribe(
       (res: any) => {
-        this.List = <TipoPagoModel[]>res.data;
-        console.log(res)
-        
+        this.List = <TipoPagoModel[]>res.data || [];
+        console.log(res);
         // si solo hay un item toma como predeterminado
-        if( this.List.length === 1 ) {
-          const item0 = this.List[0];          
-          this._formControlName.patchValue(item0);          
-          this.getObject.emit(item0);    
-        }        
-      }
-    )
+        if ( this.List.length === 1 ) {
+          const item0 = this.List[0];
+          this._formControlName.patchValue(item0);
+          this.getObject.emit(item0);
+        }
+      });
   }
 
-  _onSelectionChange(a) {    
-    this.getObject.emit(a.value);    
+  _onSelectionChange(a) {
+    this.getObject.emit(a.value);
   }
 
   compare(c1: TipoPagoModel, c2: TipoPagoModel): boolean {

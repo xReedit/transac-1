@@ -4,12 +4,14 @@ import { DashboardRoutes } from './dashboard.routing';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { ComponentesModule } from '../componentes/componentes.module';
+import { MaterialModule } from 'src/app/shared/material/material.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(DashboardRoutes),
-    ComponentesModule
+    ComponentesModule,
+    MaterialModule
   ],
   declarations: [DashboardComponent]
 })

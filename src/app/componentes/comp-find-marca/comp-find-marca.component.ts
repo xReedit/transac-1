@@ -15,6 +15,9 @@ export class CompFindMarcaComponent implements OnInit {
 
   @Input()
   _formControlName: FormControl;
+
+  @Input()
+  getOnlyId: boolean = false; //devuelve solo id, ya no el modelo
   
   @Output()
   getObject: EventEmitter<any> = new EventEmitter();  
@@ -40,20 +43,26 @@ export class CompFindMarcaComponent implements OnInit {
         
         // si solo hay un item toma como predeterminado
         if( this.List.length === 1 ) {
-          const item0 = this.List[0];          
-          this._formControlName.patchValue(item0);          
-          this.getObject.emit(item0);    
-        }        
+          const item0 = this.List[0];                              
+          this._emit(item0);          
+        }
       }
     )
   }
 
-  _onSelectionChange(a) {    
-    this.getObject.emit(a.value);    
+  _onSelectionChange(a) {        
+    this._emit(a.value);
   }
 
-  compare(c1: MarcaModel, c2: MarcaModel): boolean {
-    return c1 && c2 ? c1.idmarca === c2.idmarca : c1 === c2;
+  private _emit(marca: MarcaModel): void{
+    const rptEmit = this.getOnlyId ? marca.idmarca : marca 
+    this._formControlName.setValue(rptEmit);
+    this.getObject.emit(rptEmit);
+  }
+
+  compare(c1: MarcaModel, c2: any): boolean {
+    const valCompare = c2 ? c2.idmarca || c2 : c2;
+    return c1 && c2 ? c1.idmarca === valCompare : c1 === c2;
   }
 
 }

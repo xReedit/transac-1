@@ -12,21 +12,22 @@
           <p>Hola, bienvenido(a), ingrese sus credenciales:</p>
           <hr>
 
-          <form action="">
+          <form [formGroup]="form">
             <div class="row ">
               <div class="col-sm-6">
                   <mat-form-field class="w-100">
-                    <input matInput placeholder="Usuario">
+                    <input matInput placeholder="Usuario" formControlName="usuario" required>
                   </mat-form-field>
               </div>
               <div class="col-sm-6">
                   <mat-form-field class="w-100">
-                    <input matInput type="password" placeholder="Clave" (keyup.enter)="logear()">
+                    <input matInput type="password" placeholder="Clave" (keyup.enter)="logear()" formControlName="password" required>
                   </mat-form-field>
               </div>
             </div>
             <hr>
             <div class="text-center">
+              <h4 [hidden] = "!error" class="text-danger">{{msj}}</h4>
               <button mat-flat-button (click)="logear()">Listo, Ingresar</button>
             </div>
           </form>

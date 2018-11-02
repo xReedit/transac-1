@@ -1,0 +1,10 @@
+<button mat-raised-button class="xbtn btn-success" [disabled]="disabled || _procesando">
+  <ng-container *ngIf="_procesando; else elseTemplate" class="animated fastIn">
+      <i class="fas fa-sync fa-spin"></i>    
+      <span class="pl-2"> Procesando... </span>
+  </ng-container>
+  <ng-template #elseTemplate class="animated fastIn">
+      <i [class]="_icon"></i>  
+      <span class="pl-2"> <span class="subtitle">{{_textKey}} </span>{{_text}}</span>
+  </ng-template>  
+</button>
