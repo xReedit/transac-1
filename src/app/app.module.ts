@@ -34,14 +34,13 @@ import { CrudHttpService } from './shared/crud-http.service';
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(AppRoutes),
-    HttpClientModule,    
+    HttpClientModule,
 
     MatToolbarModule,
     MatSidenavModule,
     MatButtonModule,
     MatListModule,
-    MatIconModule    
-    
+    MatIconModule
   ],
   providers: [CrudHttpService],
   bootstrap: [AppComponent]

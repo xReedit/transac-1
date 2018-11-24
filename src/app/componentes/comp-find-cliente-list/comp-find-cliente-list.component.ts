@@ -20,7 +20,7 @@ export class CompFindClienteListComponent implements OnInit {
   myControl = new FormControl();
 
   @Input()
-  _formControlName: FormControl;  
+  _formControlName: FormControl;
 
   @Output()
   getObject: EventEmitter<any> = new EventEmitter();
@@ -29,31 +29,32 @@ export class CompFindClienteListComponent implements OnInit {
   @ViewChild(MatPaginator) paginadorHost: MatPaginator;
 
 
-  public verFooter: boolean = false;
+  public verFooter = false;
 
-  private pageMostar: number = 1;
-  public rows: number = 5;
-  public totalRecords: number = 0;
-  private ultimoParametroBuscado: string = '';
+  private pageMostar = 1;
+  public rows = 5;
+  public totalRecords = 0;
+  private ultimoParametroBuscado = '';
 
 
   public listProveedorCliente: ClienteModel[] = [];
-  
+
   constructor(private crudService: CrudHttpService) { }
 
   ngOnInit() {
-    
+
     this.paginadorHost._intl.nextPageLabel = '';
-    this.paginadorHost._intl.previousPageLabel = '';        
-    this.paginadorHost.hidePageSize=true;
-    
+    this.paginadorHost._intl.previousPageLabel = '';
+    this.paginadorHost.hidePageSize = true;
 
 
 
-    if (this._formControlName == undefined) {
+
+    if (this._formControlName === undefined) {
       this._formControlName = this.myControl;
     }
 
+    // tslint:disable-next-line:no-non-null-assertion
     this._formControlName!.valueChanges
       .pipe(
         startWith(''),
@@ -73,30 +74,31 @@ export class CompFindClienteListComponent implements OnInit {
   }
 
 
-  private filtrar(filterValue): void {    
-    if (typeof filterValue !== 'string') { 
-      return; 
+  private filtrar(filterValue): void {
+    if (typeof filterValue !== 'string') {
+      return;
     }
 
-    if (filterValue === '') { 
-      this.autocomplete.closePanel(); 
-      return; 
+    if (filterValue === '') {
+      this.autocomplete.closePanel();
+      return;
     }
 
-    const _filtros = `(nombres-contains-'!${filterValue}!')`;
+    const _filtros = `nombres:contains:'!${filterValue}!'`;
     // const filtros = JSON.stringify(this.configService.jsonFilter(_filtros));
 
     // this.crudService.getAll(this.pageMostar, this.rows, 'asc', 'razonsocial', filtros, 'proveedorcliente', 'pagination', null)
-    this.crudService.paginacion('api/cliente','getpagination',this.pageMostar,this.rows,_filtros,'nombres','ASC', true, true)
-      .subscribe((res: any) => {        
+    this.crudService.paginacion('api/cliente', 'getpagination', this.pageMostar, this.rows, _filtros, 'nombres', 'ASC', true, true)
+      .subscribe((res: any) => {
+        console.log(res);
         this.listProveedorCliente = <ClienteModel[]>res.data || null;
         this.totalRecords = res.pages.totalCount;
 
         this.verFooter = this.totalRecords > 4 ? true : false;
-    });    
+    });
 
 
-  
+
     }
 
 
@@ -113,14 +115,14 @@ export class CompFindClienteListComponent implements OnInit {
   }
 
 
-  public _onSelectionChange(event, proveedorCliente: ClienteModel): void {        
-    this.getObject.emit(proveedorCliente);    
+  public _onSelectionChange(event, proveedorCliente: ClienteModel): void {
+    this.getObject.emit(proveedorCliente);
     this.listProveedorCliente = null;
   }
 
   public page(event: PageEvent): void {
     this.rows = event.pageSize;
-    this.pageMostar = event.pageIndex+1;
+    this.pageMostar = event.pageIndex + 1;
     this.filtrar(this.ultimoParametroBuscado);
   }
 

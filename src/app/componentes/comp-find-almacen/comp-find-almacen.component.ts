@@ -15,17 +15,20 @@ export class CompFindAlmacenComponent implements OnInit {
 
   @Input()
   _formControlName: FormControl;
-  
+
   @Output()
-  getObject: EventEmitter<any> = new EventEmitter();  
+  getObject: EventEmitter<any> = new EventEmitter();
+
+  @Input()
+  getOnlyId = false; // devuelve solo id, ya no el modelo
 
   public List: AlmacenModel[] = [];
-  
-  constructor(private crudService: CrudHttpService) { 
-    if (this._formControlName == undefined) {
+
+  constructor(private crudService: CrudHttpService) {
+    if (this._formControlName === undefined) {
       this._formControlName = this.myControl;
     }
-    
+
     this.loadMaestro();
   }
 
@@ -33,27 +36,33 @@ export class CompFindAlmacenComponent implements OnInit {
   }
 
   private loadMaestro() {
-    this.crudService.getAll('api/almacen','getall', false, false).subscribe(
+    this.crudService.getAll('api/almacen', 'getall', false, false).subscribe(
       (res: any) => {
         this.List = <AlmacenModel[]>res.data;
-        console.log(res)
-        
+        console.log(res);
+
         // si solo hay un item toma como predeterminado
-        if( this.List.length === 1 ) {
-          const item0 = this.List[0];          
-          this._formControlName.patchValue(item0);          
-          this.getObject.emit(item0);    
-        }        
+        if (this.List.length === 1) {
+          const item0 = this.List[0];
+          this._emit(item0);
+        }
       }
-    )
+    );
   }
 
-  _onSelectionChange(a) {    
-    this.getObject.emit(a.value);    
+  _onSelectionChange(a) {
+    this._emit(a.value);
   }
 
   compare(c1: AlmacenModel, c2: AlmacenModel): boolean {
-    return c1 && c2 ? c1.idalmacen === c2.idalmacen : c1 === c2;
+    const valCompare = c2 ? c2.idalmacen || c2 : c2;
+    return c1 && c2 ? c1.idalmacen === valCompare : c1 === c2;
+  }
+
+  _emit(item: AlmacenModel): void {
+    const rptEmit = this.getOnlyId ? item.idalmacen : item;
+    this._formControlName.setValue(rptEmit);
+    this.getObject.emit(rptEmit);
   }
 
 }

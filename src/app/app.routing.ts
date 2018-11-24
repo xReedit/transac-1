@@ -19,6 +19,16 @@ export const AppRoutes: Routes = [
           path: 'almacen/producto',
           // path: '',
           loadChildren: './modulo-almacen/producto/producto.module#ProductoModule'
+        },
+        {
+          path: 'almacen/distribuicion',
+          // path: '',
+          loadChildren: './modulo-almacen/distribuicion/distribuicion.module#DistribuicionModule'
+        },
+        {
+          path: 'ventas/venta',
+          // path: '',
+          loadChildren: './modulo-ventas/ventas/ventas.module#VentasModule'
         }
       ]
     },
@@ -30,4 +40,5 @@ export const AppRoutes: Routes = [
         loadChildren: './session/session.module#SessionModule'
       }]
     }
-]
+];
+

@@ -14,6 +14,7 @@ import { CompFindClienteListComponent } from './comp-find-cliente-list/comp-find
 
 import { CompBtnSuccessComponent } from './comp-btn-success/comp-btn-success.component';
 import { CompBtnCancelComponent } from './comp-btn-cancel/comp-btn-cancel.component';
+import { CompFindProductoListComponent } from './comp-find-producto-list/comp-find-producto-list.component';
 
 @NgModule({
   imports: [
@@ -21,31 +22,33 @@ import { CompBtnCancelComponent } from './comp-btn-cancel/comp-btn-cancel.compon
     ReactiveFormsModule,
     FormsModule,
     MaterialModule
-    
+
   ],
   declarations: [
-    CompFindSedeComponent, 
-    CompFindClienteComponent, 
-    CompFindTipoPagoComponent, 
-    CompFindCategoriaComponent, 
-    CompFindTallaComponent, 
-    CompFindMarcaComponent, 
-    CompFindAlmacenComponent, 
-    CompFindClienteListComponent, 
-    CompBtnSuccessComponent, 
-    CompBtnCancelComponent
+    CompFindSedeComponent,
+    CompFindClienteComponent,
+    CompFindTipoPagoComponent,
+    CompFindCategoriaComponent,
+    CompFindTallaComponent,
+    CompFindMarcaComponent,
+    CompFindAlmacenComponent,
+    CompFindClienteListComponent,
+    CompBtnSuccessComponent,
+    CompBtnCancelComponent,
+    CompFindProductoListComponent
   ],
   exports: [
     CompFindSedeComponent,
-    CompFindClienteComponent, 
-    CompFindTipoPagoComponent, 
-    CompFindCategoriaComponent, 
-    CompFindTallaComponent, 
+    CompFindClienteComponent,
+    CompFindTipoPagoComponent,
+    CompFindCategoriaComponent,
+    CompFindTallaComponent,
     CompFindMarcaComponent,
     CompFindAlmacenComponent,
-    CompFindClienteListComponent, 
-    CompBtnSuccessComponent, 
-    CompBtnCancelComponent
+    CompFindClienteListComponent,
+    CompBtnSuccessComponent,
+    CompBtnCancelComponent,
+    CompFindProductoListComponent
   ]
 })
 export class ComponentesModule { }

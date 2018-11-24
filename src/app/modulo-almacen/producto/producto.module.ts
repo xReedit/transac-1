@@ -18,11 +18,11 @@ import { MatButtonModule } from '@angular/material';
   imports: [
     CommonModule,
     FormsModule, ReactiveFormsModule,
-    ProductoRoutingModule,    
-    MaterialModule,    
+    ProductoRoutingModule,
+    MaterialModule,
     MatDialogModule,
     HttpClientModule,
-    ComponentesModule    
+    ComponentesModule
   ],
   declarations: [
     ProductoListComponent,

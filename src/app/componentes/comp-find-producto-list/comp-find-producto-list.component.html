@@ -1,0 +1,39 @@
+<form class="example-form">
+  <mat-form-field class="w-100">
+<input matInput placeholder="Buscar Producto" aria-label="State" [matAutocomplete]="auto" [formControl]="_formControlName" (keydown.enter)="checkCodigoBarra()" (focus)="_focus($event)">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="_displayWith">
+      <div *ngFor="let item of listPorductoDetalle">
+
+        <mat-option [value]="item" (onSelectionChange)="_onSelectionChange($event,item)">
+          <div>
+            <p class="titulo">{{item.producto_detalle.producto.descripcion}} ({{item.stock}})</p>
+            <span class="subtitulo"> 
+              {{item.producto_detalle.producto.marca.descripcion}} |  
+              {{item.producto_detalle.codigobarra}} |
+              {{item.producto_detalle.color}} |
+              {{item.producto_detalle.talla.descripcion}}
+            </span>
+          </div>
+        </mat-option>
+
+      </div>            
+
+      <div class="autocomplete-footer" [hidden]="!verFooter">
+        <mat-paginator #paginadorHost [length]="totalRecords" [pageSize]="rows" (page)="page($event)">
+        </mat-paginator>
+      </div>
+    </mat-autocomplete>
+      
+      <mat-error *ngIf="!cargando && _formControlName.invalid">
+        {{ _formControlName.errors['msj'] }}
+      </mat-error>
+
+      
+      
+    <mat-icon matSuffix><i class="fas fa-search"></i></mat-icon>
+  </mat-form-field>
+
+  <div style="margin-top:-15px; height: 10px;">
+    <mat-progress-bar mode="indeterminate" [hidden]="!cargando"></mat-progress-bar>
+  </div>
+</form>

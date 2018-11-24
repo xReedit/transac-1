@@ -3,20 +3,35 @@
     <h2 mat-dialog-title>Detalle del producto</h2>
     <hr>
     <mat-dialog-content [formGroup]="form">
+        
+<app-comp-find-almacen [getOnlyId]="true" [_formControlName]="this.form.controls['idalmacen_inicial']"></app-comp-find-almacen>
+
         <mat-form-field class="w-100">
-            <input autofocus appKeyTab matInput placeholder="Codigo Barras" formControlName="codigobarra" class="text-uppercase" #txtCodeBar>
+        <input autofocus appKeyTab matInput                 
+                placeholder="Codigo Barras" 
+                formControlName="codigobarra"
+                class="text-uppercase" #txtCodeBar>
             <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
-            <a class="float-right cursor" matSuffix (click)="setCodigoBarra()">Generar</a>
+            <a class="float-right cursor" matSuffix                 
+                (click)="setCodigoBarra()">Generar</a>
         </mat-form-field>  
     
         <mat-form-field class="w-100">
-            <input appKeyTab matInput placeholder="Color" required formControlName="color" class="text-uppercase">
+            <input appKeyTab matInput placeholder="Color" 
+                [appResetControl]="resetForm" 
+                required formControlName="color" 
+                class="text-uppercase">
         </mat-form-field>  
     
-        <app-comp-find-talla [_formControlName]="this.form.get('talla')"></app-comp-find-talla>
+        <app-comp-find-talla [_formControlName]="this.form.get('X_talla')"></app-comp-find-talla>
     
         <mat-form-field class="w-100">
-            <input appKeyTab matInput type="number" formControlName="stock" placeholder="Stock" autocomplete="off" type="number" (keydown.enter)="save()">
+            <input appKeyTab matInput type="number" 
+                [appResetControl]="resetForm" 
+                formControlName="stock_inicial" 
+                placeholder="Stock"
+                autocomplete="off" 
+                type="number" (keydown.enter)="save()">
         </mat-form-field>        
     </mat-dialog-content>
     

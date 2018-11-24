@@ -10,54 +10,14 @@
                     <span class="subtitulo">Direccion: {{item?.direccion}} | Telefono: {{item?.telefono}} </span>
                   </div>
               </mat-option> 
-          
-          <!-- <ng-container *ngIf="agruparPorDireccion; then agruparDireccion; else agruparProveedor"></ng-container>
-          <ng-template #agruparDireccion>
-            
-              <ng-container *ngIf="item.proveedorclientedireccions; then tieneDireccion; else noTieneDireccion"></ng-container>
-              <ng-template #tieneDireccion>
-                  <mat-option *ngFor="let direccion of item.proveedorclientedireccions" [value]="item" (onSelectionChange)="_onSelectionChange($event,item,direccion)">
-                      <div>
-                        <p class="titulo">{{item?.razonsocial}} ({{item.nrodocumento}})</p>
-                        <span class="subtitulo">Direccion: {{ direccion.direccion | lowercase}} </span>
-                      </div>
-                  </mat-option>
-              </ng-template>
-              <ng-template #noTieneDireccion>
-                  <mat-option [value]="item" (onSelectionChange)="_onSelectionChange($event,item)">
-                      <div>
-                        <p class="titulo">{{item?.razonsocial}} ({{item.nrodocumento}})</p>
-                        <span class="subtitulo">Direccion: 'No asignado' </span>
-                      </div>
-                  </mat-option> 
-              </ng-template>
-
-          </ng-template>
-
-          <ng-template #agruparProveedor>
-            
-              <mat-option [value]="item" (onSelectionChange)="_onSelectionChange($event,item)">
-                  <div>
-                    <p class="titulo">{{item?.razonsocial}} ({{item.nrodocumento}})</p>
-                    <span class="subtitulo">Telefono: {{item?.telefono}} | Representante: {{item?.representante | lowercase}}  </span>
-                  </div>
-              </mat-option> 
-            
-          </ng-template>           -->
                                                
         </div>
-        <div class="autocomplete-footer" [hidden]="!verFooter">                              
-                <!-- <span class="float-left p-2 d-inline">{{totalRecords}} Registros</span> -->
-                <!-- <div class="h-1"> -->
+        <div class="autocomplete-footer" [hidden]="!verFooter">
                     <mat-paginator #paginadorHost
-
                         [length]="totalRecords"
-                        [pageSize]="rows"                        
+                        [pageSize]="rows"
                         (page)="page($event)">
                     </mat-paginator>
-
-                    <!-- <p-paginator [rows]="5" [totalRecords]="totalRecords" (onPageChange)="paginate($event)"></p-paginator>                     -->
-                <!-- </div> -->
         </div>
 
         </mat-autocomplete>            

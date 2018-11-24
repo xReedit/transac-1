@@ -1,0 +1,26 @@
+<div class="animated fadeIn m-contenedor">
+  <mat-card>
+    <div class="float-right">
+      <!-- <button class="btn btn-success btn-sm"> [F10] Guardar </button> -->
+    </div>
+    <h5>Venta Rapida</h5>
+    <hr>
+    <div class="row">
+      <div class="col-sm-10"><app-comp-find-producto-list appKeyTab (getObject)="_getObjectList($event)" #txtProducto></app-comp-find-producto-list></div>      
+      <div class="col-sm-2">
+        <mat-form-field class="w-100">
+                <input appKeyTab matInput type="number"
+                      value="1"
+                      [disabled]="!hayProducto"
+                      (focus)="selectContent()"
+                      placeholder="Cant"
+                      autocomplete="off" 
+                      (keyup.enter)="AddProducto(txtCantidad.value)"
+                      #txtCantidad>
+          </mat-form-field>
+      </div>
+    </div>
+    <hr>
+    
+  </mat-card>
+  <div>

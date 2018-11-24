@@ -1,0 +1,66 @@
+.titulo {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.subtitulo {
+  font-size: 11px;
+  font-weight: 400;
+  color: grey;
+  margin: 0;
+}
+
+table tr>td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 1.3;
+}
+
+
+/* mostrar div de confirmacion, para borrar en mat talbe*/
+.rowConfirmDelete {
+  background: #f50057;
+  color: #E3DADA;
+  z-index: 1000;
+  position: absolute;
+  top: -1px;
+  right: 0px;
+  width: 0px;
+  height: 101%;
+  padding: 6px;
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  transition: all 0.2s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+  
+  display: flex;
+}
+
+.rowConfirmDelete div {
+  position: relative;
+  transform: scalex(0);
+  transition: all 0.1s ease-in-out;
+  margin: auto;
+}
+
+.rowConfirmDelete.visible {
+  visibility: visible;
+  margin: auto;
+}
+
+.rowConfirmDelete.selected {
+  width: 200px;
+  opacity: 1;  
+}
+
+.rowConfirmDelete.selected div {
+  transform: scalex(1);
+  margin: auto;
+}
+
+/* mostrar div de confirmacion, para borrar */

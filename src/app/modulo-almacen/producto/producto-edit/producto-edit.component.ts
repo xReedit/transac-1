@@ -4,9 +4,9 @@ import { ProductoEditDetalleDialogComponent } from './producto-edit-detalle-dial
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CrudHttpService } from 'src/app/shared/crud-http.service';
 
-import { ProductoDetalleModel } from 'src/app/models/producto.detalle.model';
-import { CategoriaModel } from '../../../models/categoria.model';
-import { MarcaModel } from 'src/app/models/marca.model';
+import swal from 'sweetalert2';
+import { MSJ_SUCCESS, MSJ_LOADING } from '../../../shared/config/config.const';
+import { ManagerErrorService } from '../../../shared/services/manager-error.service';
 
 @Component({
   selector: 'app-producto-edit',
@@ -26,7 +26,8 @@ export class ProductoEditComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
-    private crudService: CrudHttpService
+    private crudService: CrudHttpService,
+    private managerErrorService: ManagerErrorService
     ) { }
 
   ngOnInit() {
@@ -68,7 +69,7 @@ export class ProductoEditComponent implements OnInit {
   }
 
   getTotalStock() {
-    return this.dataProductoDetalles.map(t => t.stock).reduce((acc, value) => acc + value, 0);
+    return this.dataProductoDetalles.map(t => t.stock_inicial).reduce((acc, value) => acc + value, 0);
   }
 
   public deleteRowLocalStorage(index): void {
@@ -78,15 +79,34 @@ export class ProductoEditComponent implements OnInit {
 
   public GuardarProducto(): void {
 
+    if (!this.form.valid || this._procesando) {return; }
+    this._procesando = true;
+
+    swal(MSJ_LOADING);
+
     this.form.controls['idcategoria'].setValue(this.form.controls['idcategoria'].value.idcategoria);
     this.form.controls['idmarca'].setValue(this.form.controls['idmarca'].value.idmarca);
 
     const data = JSON.stringify(this.form.value);
     console.log(data);
 
-    this.crudService.create(data, 'api/producto', 'create').subscribe ((res: any) => {
+    this.crudService.create(data, 'api/producto', 'create').subscribe (
+      (res: any) => {
       console.log(res);
-      const idproducto = res[0];
+      if (!res.success) { this.managerErrorService.ResError(res); return; }
+
+      const idproducto = res.id[0];
+
+      const dataListDetalle = JSON.stringify(this.dataProductoDetalles).replace(/-id-/g, idproducto);
+      console.log(dataListDetalle);
+
+      this.crudService.create(dataListDetalle, 'api/producto_detalle', 'create').subscribe(resp => {
+        console.log('detalle ', resp);
+        swal(MSJ_SUCCESS);
+        this._procesando = false;
+      });
+    }, error => {
+      this.managerErrorService.ResError(error);
     });
   }
 

@@ -6,7 +6,7 @@ import { CategoriaModel } from '../../models/categoria.model';
 @Component({
   selector: 'app-comp-find-categoria',
   templateUrl: './comp-find-categoria.component.html',
-  styleUrls: ['./comp-find-categoria.component.css']  
+  styleUrls: ['./comp-find-categoria.component.css']
 })
 export class CompFindCategoriaComponent implements OnInit {
 
@@ -17,18 +17,18 @@ export class CompFindCategoriaComponent implements OnInit {
   _formControlName: FormControl;
 
   @Input()
-  getOnlyId: boolean = false; //devuelve solo id, ya no el modelo
-  
+  getOnlyId = false; // devuelve solo id, ya no el modelo
+
   @Output()
-  getObject: EventEmitter<any> = new EventEmitter();  
+  getObject: EventEmitter<any> = new EventEmitter();
 
   public List: CategoriaModel[] = [];
-  
-  constructor(private crudService: CrudHttpService) { 
-    if (this._formControlName == undefined) {
+
+  constructor(private crudService: CrudHttpService) {
+    if (this._formControlName === undefined) {
       this._formControlName = this.myControl;
     }
-    
+
     this.loadMaestro();
   }
 
@@ -36,26 +36,25 @@ export class CompFindCategoriaComponent implements OnInit {
   }
 
   private loadMaestro() {
-    this.crudService.getAll('api/categoria','getall', true, true).subscribe(
+    this.crudService.getAll('api/categoria', 'getFilterBy', true, true).subscribe(
       (res: any) => {
         this.List = <CategoriaModel[]>res.data;
-        console.log(res)
+        console.log(res);
 
         // si solo hay un item toma como predeterminado
-        if( this.List.length === 1 ) {
-          const item0 = this.List[0];                              
-          this._emit(item0);          
+        if ( this.List.length === 1 ) {
+          const item0 = this.List[0];
+          this._emit(item0);
         }
-      }
-    )
+      });
   }
 
-  _onSelectionChange(a) {    
+  _onSelectionChange(a) {
     this._emit(a.value);
   }
 
-  private _emit(marca: CategoriaModel): void{
-    const rptEmit = this.getOnlyId ? marca.idcategoria : marca 
+  private _emit(marca: CategoriaModel): void {
+    const rptEmit = this.getOnlyId ? marca.idcategoria : marca;
     this._formControlName.setValue(rptEmit);
     this.getObject.emit(rptEmit);
   }

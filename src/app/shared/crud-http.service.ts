@@ -27,7 +27,9 @@ export class CrudHttpService {
                   orden: string, ordendireccion: string = null,
                   conOrg: boolean = true, conSede: boolean = true): Observable<any[]> {
 
+
     const url = this.setUrlFiltros(controller, evento, conOrg, conSede, filter);
+    console.log('url', url);
     const params = new HttpParams({
       fromObject: {
         pagenumber: pagenumber.toString(),
@@ -40,7 +42,8 @@ export class CrudHttpService {
     return this.httpClient.get<any[]>(url, {params: params});
   }
 
-  create(datos: any, controller: string, evento: string): Observable<any> {
+  // enviar idorg o idsede o idusuario vacios, el back end los llenara
+  create(datos: any, controller: string, evento: string = 'create'): Observable<any> {
     const url = this.setUrl(controller, evento);
     const header = this.getHeaderHttpClientForm();
 
@@ -78,22 +81,22 @@ export class CrudHttpService {
   private setUrlFiltros(controller: string, evento: string, conOrg: boolean, conSede: boolean, filter: string= ''): string {
     const getSede = conSede ? this.setInfoSedeToken() : '';
     const getOrg = conOrg ? this.setInfoOrgToken() : '';
-    const getOperador = (conOrg && conSede) ? '-y-' : '';
-    const getFilter = filter === '' ? '' : `-y-${filter}`;
-    let filterOrgSede = `${getSede + getOperador + getOrg}`;
+    const getOperador = (conOrg && conSede) ? '~y~' : '';
+    const filterOrgSede = `${getSede + getOperador + getOrg}`;
+    let getFilter = filterOrgSede === '' ? filter : filter === '' ?  '' : `~y~${filter}`;
 
-    filterOrgSede = filterOrgSede !== '' ? '/getFilterBy/' + filterOrgSede + getFilter : '';
+    getFilter = '/' + filterOrgSede + getFilter;
 
 
-    const url = `${URL_SERVER}/${controller}/${evento}${filterOrgSede}`;
+    const url = `${URL_SERVER}/${controller}/${evento}${getFilter}`;
     return url;
   }
 
   private setInfoSedeToken(): string {
-    return 'idsede=' + this.infoTockenService.getInfoSedeToken();
+    return 'idsede:eq:' + this.infoTockenService.getInfoSedeToken();
   }
   private setInfoOrgToken(): string {
-    return 'idorg=' + this.infoTockenService.getInfoSedeToken();
+    return 'idorg:eq:' + this.infoTockenService.getInfoSedeToken();
   }
 
   private getHeaderHttpClientForm(): HttpHeaders {

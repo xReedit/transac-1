@@ -33,7 +33,7 @@ export class CompFindTipoPagoComponent implements OnInit {
   }
 
   private loadMaestro() {
-    this.crudService.getAll('api/tipopago', 'getall', false, false).subscribe(
+    this.crudService.getAll('api/tipo_pago', 'getall', false, false).subscribe(
       (res: any) => {
         this.List = <TipoPagoModel[]>res.data || [];
         console.log(res);

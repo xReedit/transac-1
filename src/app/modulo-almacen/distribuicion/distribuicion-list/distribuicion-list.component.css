@@ -1,0 +1,9 @@
+table tr>td {
+  /* color: #424242; */
+  font-size: 12px;
+}
+
+table tr {
+        height: auto;
+        line-height: 3;
+}

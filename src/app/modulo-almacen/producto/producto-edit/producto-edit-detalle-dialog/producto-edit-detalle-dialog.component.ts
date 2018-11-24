@@ -11,17 +11,19 @@ import { ProductoDetalleModel } from 'src/app/models/producto.detalle.model';
 })
 export class ProductoEditDetalleDialogComponent implements OnInit {
 
-  form: FormGroup; 
+  form: FormGroup;
 
-  private codigobarra: string = '';
-  private color: string = '';
+  private codigobarra = '';
+  private color = '';
   private talla: TallaModel;
   private stock: number;
+
+  public resetForm = false;
 
   @ViewChild('txtCodeBar') txtCodeBar: ElementRef;
 
   dataRpt: ProductoDetalleModel[] = [];
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private infoTockenService: InfoTockenService,
@@ -33,42 +35,55 @@ export class ProductoEditDetalleDialogComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
+      idproducto: '?',
       codigobarra: [this.codigobarra],
       color: [this.color,  Validators.required],
-      talla: [this.talla ,  Validators.required],
-      stock: [this.stock ,  [Validators.required, Validators.pattern('[0-9]+(\.[0-9][0-9]?)?')]]
+      X_talla: [this.talla ,  Validators.required],
+      idtalla: '',
+      stock_inicial: [this.stock ,  [Validators.required, Validators.pattern('[0-9]+(\.[0-9][0-9]?)?')]],
+      idalmacen_inicial: '',
+      estado: 0
     });
 
     this.nuevo();
   }
 
   nuevo(): void {
-    this.form.reset();
+    // this.form.reset();
+    this.resetForm = true;
     this.setCodigoBarra();
     this.txtCodeBar.nativeElement.focus();
+
+    setTimeout(() => {
+      this.resetForm = false;
+    }, 100);
   }
 
 
-  save(): void {    
-    if (!this.form.valid) return;
+  save(): void {
+    if (!this.form.valid) { return; }
+
+    this.form.controls.idtalla.patchValue(this.form.controls.X_talla.value.idtalla);
+    this.form.controls.idproducto.patchValue('-id-');
+
     this.dataRpt.push(this.form.value);
-    this.nuevo();        
+    this.nuevo();
     console.log(this.dataRpt);
   }
-  
-  close(): void {    
+
+  close(): void {
     this.dialogRef.close(this.dataRpt);
   }
 
   setCodigoBarra(): void {
-    const OrgSede = this.infoTockenService.getInfoOrgToken()+''+this.infoTockenService.getInfoSedeToken();
+    const OrgSede = this.infoTockenService.getInfoOrgToken() + '' + this.infoTockenService.getInfoSedeToken();
     let length = 0;
     let rpt = '';
     while (length <= 7) {
         rpt = rpt + (Math.floor(Math.random() * (9 - 0))).toString();
         length++;
-    }    
-    rpt = OrgSede+''+rpt;
+    }
+    rpt = OrgSede + '' + rpt;
     this.form.controls['codigobarra'].patchValue(rpt);
   }
 

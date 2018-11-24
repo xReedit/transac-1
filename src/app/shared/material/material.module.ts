@@ -7,13 +7,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
-//directivas
+// directivas
 import { KeyClickDirective } from '../directivas/key-click.directive';
 import { KeyTabDirective } from '../directivas/key-tab.directive';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ResetcontrolDirective } from '../directivas/reset-control.directive';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 
@@ -29,7 +31,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatButtonModule,
     MatTableModule,
     MatPaginatorModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule,
   ],
   exports: [
     CommonModule,
@@ -42,13 +45,16 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatTableModule,
     MatPaginatorModule,
     MatIconModule,
-    
+    MatCheckboxModule,
+
     KeyClickDirective,
-    KeyTabDirective 
+    KeyTabDirective,
+    ResetcontrolDirective
   ],
   declarations: [
     KeyClickDirective,
-    KeyTabDirective    
+    KeyTabDirective,
+    ResetcontrolDirective
   ]
 })
 export class MaterialModule { }

@@ -1,6 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+@font-face {
+  font-family: Barcode39;
+  src: url(assets/fonts/bar3of9.TTF);
+}
+
+#CodBarra {
+  font-family: "Barcode39";
+  font-size: 60px;
+}
+
+
 .cursor{ cursor: pointer; }
 .m-contenedor {
     font-size: 12px;
