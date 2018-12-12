@@ -50,6 +50,26 @@ export class CrudHttpService {
     return this.httpClient.post<any>(url, datos, {headers: header});
   }
 
+  // enviar idorg o idsede o idusuario vacios, el back end los llenara
+  update(datos: any, id: any, controller: string, evento: string = 'update'): Observable<any> {
+    const url = this.setUrl(controller, evento) + '/' + id.toString();
+    const header = this.getHeaderHttpClientForm();
+
+    return this.httpClient.put<any>(url, datos, { headers: header });
+  }
+
+  getFilterBy(controller: string, evento: string,
+    filter: string, conOrg: boolean = true, conSede: boolean = true): Observable<any[]> {
+
+      const url = this.setUrlFiltros(controller, evento, conOrg, conSede, filter);
+      return this.httpClient.get<any[]>(url);
+  }
+
+  getById(id: any, controller: string, evento: string): Observable<any[]> {
+    const url = this.setUrlFiltros(controller, evento, false, false, id);
+    return this.httpClient.get<any[]>(url);
+  }
+
 
   // login manda los datos en json
   login(datos: any): Observable<any> {

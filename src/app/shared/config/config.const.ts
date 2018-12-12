@@ -43,3 +43,6 @@ export const MSJ_ERROR: any =  {
         showCancelButton: true,
 };
 
+export const TOKEN_API_DNI_RUC =  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.1tLS4vhIGufCW5H5vJ4bmNxhf43x-Vaik4oRwaDXi7E';
+export const URL_API_DNI_RUC = 'http://consulta.viudanegra.com.pe/-?-/api/service.php';
+

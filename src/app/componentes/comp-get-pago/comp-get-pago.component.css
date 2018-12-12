@@ -1,0 +1,14 @@
+.tabla-forma-pago tr>td {
+        border-bottom: 1px solid #bdbdbd;
+}
+.rowtotal td{
+        border-bottom: none;
+        font-size: 15px;
+        font-weight: 600;
+}
+
+.iconremove {display: none;}
+
+.tabla-forma-pago tr:hover .iconremove {
+  display: inline-block;
+}

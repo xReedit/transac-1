@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <mat-form-field class="w-100">
-                        <input matInput placeholder="Descripcion" formControlName="descripcion">
+                        <input matInput placeholder="Descripcion" formControlName="descripcion" appUpperCase>
                     </mat-form-field>
 
                     <app-comp-find-categoria [_formControlName]="this.form.controls['idcategoria']"></app-comp-find-categoria>
@@ -31,7 +31,7 @@
                     </mat-form-field>                                
 
                     <mat-form-field class="w-100">
-                        <textarea matInput type="number" placeholder="Especificaciones" rows="4" spellcheck="false"  formControlName="glosa"></textarea>
+                        <textarea matInput type="number" placeholder="Especificaciones" rows="4" spellcheck="false"  formControlName="glosa" appUpperCase></textarea >
                     </mat-form-field>  
                 </div>
             </div>
@@ -81,8 +81,7 @@
                         <ng-container matColumnDef="-">
                             <th mat-header-cell *matHeaderCellDef class="m-0 bg-dark text-white" style="width: 65px;"> - </th>
                             <td mat-cell *matCellDef="let element; let i=index" class="w-10 position-relative">
-                                <div>
-                                    <!-- <i class="fa fa-pencil cursor pr-1" (click)="_getObJectProductoListIngresar(element)" aria-hidden="true"></i> -->                                    
+                                <div>                                    
                                     <i class="far fa-trash-alt cursor" aria-hidden="true" (click)="rowIndexCondirmDelete = i"></i>
                                 </div>
 

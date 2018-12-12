@@ -1,5 +1,5 @@
-<form class="example-form">
-  <mat-form-field class="w-100">
+<!-- <form class="example-form"> -->
+<mat-form-field class="w-100">
 <input matInput placeholder="Buscar Producto" aria-label="State" [matAutocomplete]="auto" [formControl]="_formControlName" (keydown.enter)="checkCodigoBarra()" (focus)="_focus($event)">
     <mat-autocomplete #auto="matAutocomplete" [displayWith]="_displayWith">
       <div *ngFor="let item of listPorductoDetalle">
@@ -36,4 +36,4 @@
   <div style="margin-top:-15px; height: 10px;">
     <mat-progress-bar mode="indeterminate" [hidden]="!cargando"></mat-progress-bar>
   </div>
-</form>
+<!-- </form> -->

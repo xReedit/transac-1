@@ -1,0 +1,54 @@
+<div class="w-100">  
+<form action="" [formGroup]="form">
+<table class="w-100 tabla-forma-pago">
+    <thead>
+      <th>
+        <app-comp-find-tipo-pago (getObject)="_getObject($event)" [_formControlName]="this.form.controls['tipo_pago']"></app-comp-find-tipo-pago>
+      </th>
+      <th [hidden]="!requiereFechaPago">
+        <mat-form-field class="w-100">
+          <input matInput type="date" placeholder="Fecha Nacimiento" formControlName="fecha_pago" appKeyTab [required]="requiereFechaPago">
+          </mat-form-field>
+      </th>
+        <th style="width:100px;">
+        <mat-form-field style="max-width:100px">
+          <!-- <input appKeyTab matInput type="number" class="text-right" placeholder="Importe" autocomplete="off" pattern="[0-9]+([\.,][0-9]+)?" (keyup.enter)="addPago()" formControlName="importe"> -->
+          <input appKeyTab matInput type="number" 
+              autofocus
+              class="text-right"
+              [max]="montoMaximo" 
+              (keyup)="validarImporte(importe.value)"  
+              (keydown.enter)="addPago()"
+              placeholder="Importe" 
+              formControlName="importe" #importe>
+      </mat-form-field>
+      </th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of listRegistroPagoDetlle; let i=index;">
+        <td class="text-left">{{ item.tipo_pago.descripcion }}</td>
+        <td [hidden]="!requiereFechaPago" class="text-left">{{ item.fecha_pago }}</td>
+        <td class="text-right">          
+          <i class="far fa-trash-alt cursor pr-1 iconremove" title="Quitar"  (click)="removeItem(i)"></i>
+          {{ item.importe | number: '0.2'}}
+        </td>
+      </tr>      
+      
+      <tr class="rowtotal">
+          <td class="text-left"><strong>Total Recibido</strong></td>
+          <td colspan="2" class="text-right"><strong>{{sumTotal | number: '0.2'}}</strong></td>          
+        </tr>
+        <tr class="rowtotal">
+          <td class="text-left"><strong>Monto a Pagar</strong></td>
+          <td colspan="2" class="text-right"><strong>{{montoPagar | number: '0.2'}}</strong></td>          
+        </tr>
+        <tr class="rowtotal">
+          <td class="text-left"><strong>Diferencia</strong></td>
+          <td colspan="2" class="text-right">
+            <strong [ngClass]="montoDiferenciaCalc > -1 ? 'text-success' : 'text-danger'">{{montoDiferenciaCalc  | number: '0.2'}}</strong>
+          </td>          
+        </tr>     
+    </tbody>
+  </table>  
+</form>
+</div>

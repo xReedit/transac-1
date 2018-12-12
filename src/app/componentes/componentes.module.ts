@@ -15,6 +15,8 @@ import { CompFindClienteListComponent } from './comp-find-cliente-list/comp-find
 import { CompBtnSuccessComponent } from './comp-btn-success/comp-btn-success.component';
 import { CompBtnCancelComponent } from './comp-btn-cancel/comp-btn-cancel.component';
 import { CompFindProductoListComponent } from './comp-find-producto-list/comp-find-producto-list.component';
+import { CompFindClienteRucDniComponent } from './comp-find-cliente-ruc-dni/comp-find-cliente-ruc-dni.component';
+import { CompGetPagoComponent } from './comp-get-pago/comp-get-pago.component';
 
 @NgModule({
   imports: [
@@ -35,7 +37,9 @@ import { CompFindProductoListComponent } from './comp-find-producto-list/comp-fi
     CompFindClienteListComponent,
     CompBtnSuccessComponent,
     CompBtnCancelComponent,
-    CompFindProductoListComponent
+    CompFindProductoListComponent,
+    CompFindClienteRucDniComponent,
+    CompGetPagoComponent
   ],
   exports: [
     CompFindSedeComponent,
@@ -48,7 +52,9 @@ import { CompFindProductoListComponent } from './comp-find-producto-list/comp-fi
     CompFindClienteListComponent,
     CompBtnSuccessComponent,
     CompBtnCancelComponent,
-    CompFindProductoListComponent
+    CompFindProductoListComponent,
+    CompFindClienteRucDniComponent,
+    CompGetPagoComponent
   ]
 })
 export class ComponentesModule { }

@@ -1,0 +1,78 @@
+<div class="animated fadeIn">
+  <mat-card>
+    <div class="row">
+      <div class="col-sm-11">
+        <h5>Clientes</h5>
+      </div>
+      <div class="col-sm-1">
+        <button class="btn btn-sm btn-success float-right" (click)="nuevoRegistro()" [routerLink]="['../edit', {id:0}]"
+          title="Nuevo Cliente">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+    </div>
+    <hr>
+    <br>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="listClientes" class="w-100">
+        
+        <ng-container matColumnDef="#">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element; let i=index;"> {{i+1}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombres">
+          <th mat-header-cell *matHeaderCellDef> Nombres </th>
+          <td mat-cell *matCellDef="let element"> {{element.nombres}} </td>
+        </ng-container>        
+
+        <ng-container matColumnDef="telefono">
+          <th mat-header-cell *matHeaderCellDef> Telefono </th>
+          <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="linea_credito">
+          <th mat-header-cell *matHeaderCellDef class="text-center"> L. Credito </th>
+          <td mat-cell *matCellDef="let element" class="text-center"> {{element.linea_credito}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="linea_credito_utilizada">
+          <th mat-header-cell *matHeaderCellDef class="text-center"> L. Credito Utilizada </th>
+          <td mat-cell *matCellDef="let element" class="text-center"> {{element.linea_credito_utilizada}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="accion">
+          <th mat-header-cell *matHeaderCellDef style="width: 65px;"> * </th>
+          <td mat-cell *matCellDef="let element; let i=index" class="w-10 position-relative">                     
+
+            <div>
+              <i class="fas fa-pencil-alt mr-3 cursor" [routerLink]="['../edit', {id:element.idcliente}]"></i>   
+              <i class="far fa-trash-alt cursor" aria-hidden="true" (click)="rowIndexCondirmDelete = i"></i>
+            </div>
+
+            <!-- mesaje de confirmacion para borrar -->
+            <div class="rowConfirmDelete" [ngClass]="{'visible selected': rowIndexCondirmDelete === i}">
+              <div>
+                <button mat-button class="xbtn" (click)="removeItem(i)">Borrar</button>
+                <button mat-button (click)="rowIndexCondirmDelete = null">Cancelar</button>
+              </div>
+            </div>
+            <!-- mesaje de confirmacion para borrar-->
+
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns; "></tr>
+      </table>
+
+      <mat-paginator #paginadorHost
+                [length]="totalRecords"
+                [pageSize]="rows"                        
+                (page)="page($event)">
+            </mat-paginator>
+    </div>
+
+  </mat-card>
+  </div>

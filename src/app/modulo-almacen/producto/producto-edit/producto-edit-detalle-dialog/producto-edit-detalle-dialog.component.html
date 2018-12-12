@@ -10,7 +10,7 @@
         <input autofocus appKeyTab matInput                 
                 placeholder="Codigo Barras" 
                 formControlName="codigobarra"
-                class="text-uppercase" #txtCodeBar>
+                class="text-uppercase" #txtCodeBar appUpperCase>
             <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
             <a class="float-right cursor" matSuffix                 
                 (click)="setCodigoBarra()">Generar</a>
@@ -20,7 +20,7 @@
             <input appKeyTab matInput placeholder="Color" 
                 [appResetControl]="resetForm" 
                 required formControlName="color" 
-                class="text-uppercase">
+                class="text-uppercase"appUpperCase>
         </mat-form-field>  
     
         <app-comp-find-talla [_formControlName]="this.form.get('X_talla')"></app-comp-find-talla>

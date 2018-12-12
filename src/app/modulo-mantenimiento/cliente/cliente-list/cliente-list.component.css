@@ -1,0 +1,49 @@
+/* table tr {
+        height: 35px;
+} */
+
+table tr>td {
+        font-size: 12px;
+        line-height: 1;
+}
+
+
+/* mostrar div de confirmacion, para borrar en mat talbe*/
+.rowConfirmDelete {
+  background: #f50057;
+  color: #E3DADA;
+  z-index: 1000;
+  position: absolute;
+  top: -1px;
+  right: 0px;
+  width: 0px;
+  height: 101%;
+  padding: 6px;
+  text-align: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  transition: all 0.2s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.rowConfirmDelete div {
+  position: relative;
+  transform: scalex(0);
+  transition: all 0.1s ease-in-out;
+}
+
+.rowConfirmDelete.visible {
+  visibility: visible;
+}
+
+.rowConfirmDelete.selected {
+  width: 200px;
+  opacity: 1;
+}
+
+.rowConfirmDelete.selected div {
+  transform: scalex(1);
+}
