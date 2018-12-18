@@ -11,7 +11,7 @@ import { ProductoEditComponent } from './producto-edit/producto-edit.component';
 import { ProductoMainComponent } from './producto-main/producto-main.component';
 import { ProductoEditDetalleDialogComponent } from './producto-edit/producto-edit-detalle-dialog/producto-edit-detalle-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatButtonModule } from '@angular/material';
+
 
 
 @NgModule({

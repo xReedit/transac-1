@@ -22,6 +22,9 @@ export class CompGetPagoComponent implements OnInit {
   @Output()
   getFormaPago: EventEmitter<VentaDetallePagoModel[]> = new EventEmitter();
 
+  @Output()
+  totalRecibido: EventEmitter<number> = new EventEmitter();
+
 
   montoMaximo = 1000000;
   montoDiferencia = 0;
@@ -68,6 +71,7 @@ export class CompGetPagoComponent implements OnInit {
     this.registroPagoDetlle.tipo_pago = data.tipo_pago;
     this.registroPagoDetlle.idtipo_pago = data.tipo_pago.idtipo_pago;
     this.registroPagoDetlle.importe = data.importe;
+    this.registroPagoDetlle.diferencia = data.importe;
     this.registroPagoDetlle.fecha_pago = data.fecha_pago;
 
     this.listRegistroPagoDetlle.push(this.registroPagoDetlle);
@@ -96,15 +100,17 @@ export class CompGetPagoComponent implements OnInit {
     const formValid = this.montoDiferencia <= 0 ? true : false;
     this.valid.emit(formValid);
 
-    if (formValid) {
+    // if (formValid) {
       this.getFormaPago.emit(this.listRegistroPagoDetlle);
-    }
+    // }
   }
 
   private caclDiferencia(): void {
     this.sumTotal = this.listRegistroPagoDetlle.map(t => t.importe).reduce((acc, value) => acc + parseFloat(value), 0);
     this.montoDiferencia = this.montoPagar - this.sumTotal;
     this.montoDiferenciaCalc = this.sumTotal - this.montoPagar;
+
+    this.totalRecibido.emit(this.sumTotal);
   }
 
   validarImporte(val: number) {

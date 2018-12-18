@@ -92,3 +92,10 @@
 }
 
 
+.tabla-1 tr>td {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.tabla-1 tr:hover{ background: lemonchiffon;}
+

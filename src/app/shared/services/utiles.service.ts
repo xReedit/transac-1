@@ -36,6 +36,26 @@ export class UtilesService {
     return formatedDate;
   }
 
+  // cambia el formato de fecha me yyyy-mm-dd a dd/mm/yyyy
+  cambiarFormatoFecha(input: string): string {
+    const pattern = /(\d{4})\-(\d{2})\-(\d{2})/;
+    if (!input || !input.match(pattern)) {
+      return null;
+    }
+    return input.replace(pattern, '$3/$2/$1');
+  }
+
+  // dias transcurridos de una fecha anterior a la fecha actual
+  diasTrasncurridos(fecha: string): number {
+    const fechaInicio = new Date(fecha).getTime();
+    const fechaFin = new Date().getTime();
+
+    const diff = fechaFin - fechaInicio;
+
+    const dias = diff / (1000 * 60 * 60 * 24);
+    return Math.round(dias - 1);
+  }
+
   setearFormulario (form: FormGroup, data: any): FormGroup {
     Object.keys(data).forEach(name => {
       if (form.controls[name]) {

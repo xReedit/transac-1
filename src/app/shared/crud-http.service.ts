@@ -12,9 +12,11 @@ export class CrudHttpService {
    }
 
   // conOrg, conSede FILTRAN SI NO SE ESPECIFICA POR ORG Y SEDE
-  getAll(controller: string, evento: string, conOrg: boolean = true, conSede: boolean = true): Observable<any[]> {
+  getAll(controller: string, evento: string, conOrg: boolean = true, conSede: boolean = true, token: boolean = false): Observable<any[]> {
     const url = this.setUrlFiltros(controller, evento, conOrg, conSede);
-    return this.httpClient.get<any[]>(url);
+    const header = token ? this.getHeaderHttpClientForm() : null;
+
+    return this.httpClient.get<any[]>(url, { headers: header });
   }
 
   // numeropagina: numero pagina a mostrar

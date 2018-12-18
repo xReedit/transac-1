@@ -1,0 +1,17 @@
+<div>
+<p>
+  Bitacora<br>
+  <span class="text-secondary">Especifique la accion que de cobranza que realizo y el resultado que obtuvo.</span>
+</p>
+<hr>
+<mat-form-field class="w-100">
+  <textarea matInput placeholder="Nota" rows="3" #txt_nota></textarea>
+</mat-form-field>
+<hr>
+<button 
+mat-raised-button class="btn btn-success btn-sm" 
+[disabled]="txt_nota.length===0"
+maxlength="255"
+(click)="registrarBitacora()">Registrar Accion</button>
+</div>
+

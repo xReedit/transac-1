@@ -1,0 +1,12 @@
+<div>
+<p>Registar pago de deuda</p>
+<hr>
+  <app-comp-get-pago [montoPagar]="deudaTotal" (getFormaPago)="_getFormaPago($event)" (totalRecibido)="_getTotalRecibido($event)"></app-comp-get-pago>
+</div>
+<hr>
+  <button 
+    mat-raised-button class="btn btn-success btn-sm" 
+    [disabled]="totalAPagar===0" 
+    (click)="registrarPagoDeuda()">Registrar  Pago</button>
+<br>
+

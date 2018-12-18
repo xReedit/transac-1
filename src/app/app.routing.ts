@@ -31,6 +31,15 @@ export const AppRoutes: Routes = [
         {
           path: 'maestro/cliente',
           loadChildren: './modulo-mantenimiento/cliente/cliente.module#ClienteModule'
+        },
+         // TESORERIA
+        {
+          path: 'cuentas/cuentas-por-pagar',
+          loadChildren: './modulo-tesoreria/cuentas/cuentas-pagar/cuentas-pagar.module#CuentasPagarModule'
+        },
+        {
+          path: 'cuentas/cuentas-por-cobrar',
+          loadChildren: './modulo-tesoreria/cuentas/cuentas-cobrar/cuentas-cobrar.module#CuentasCobrarModule'
         }
       ]
     },

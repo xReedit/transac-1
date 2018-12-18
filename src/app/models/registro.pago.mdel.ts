@@ -1,3 +1,4 @@
+import { RegistroPagoDetalleModel } from './registro.pogo.detalle.model';
 
 export class RegistroPagoModel {
         constructor(
@@ -11,6 +12,7 @@ export class RegistroPagoModel {
                 public hora: string = null,
                 public total: string = null,
                 public estado: number = 0,
+                public registro_cobro_detalles: RegistroPagoDetalleModel[] = []
         ) {
 
         }
